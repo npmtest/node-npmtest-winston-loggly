@@ -1,0 +1,1177 @@
+<html lang="en"><head>
+    <title>Code coverage report for node-npmtest-winston-loggly/node_modules/winston-loggly/lib/winston-loggly.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-winston-loggly">npmtest-winston-loggly (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-winston-loggly/node_modules/winston-loggly/lib/winston-loggly.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">1.94% <small>(2 / 103)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 91)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">1.96% <small>(2 / 102)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> » <a href="index.html">node-npmtest-winston-loggly/node_modules/winston-loggly/lib/</a> » winston-loggly.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tbody><tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*
+ * loggly.js: Transport for logginh to remote Loggly API
+ *
+ * (C) 2010 Charlie Robbins
+ * MIT LICENCE
+ *
+ */
+&nbsp;
+var events = require('events'),
+    loggly = require('loggly'),
+    util = require('util'),
+    winston = require('winston'),
+    Stream = require('stream').Stream;
+&nbsp;
+//
+// Remark: This should be at a higher level.
+//
+<span class="cstat-no" title="statement not covered">var code = /\u001b\[(\d+(;\d+)*)?m/g;</span>
+&nbsp;
+//
+// ### function Loggly (options)
+// #### @options {Object} Options for this instance.
+// Constructor function for the Loggly transport object responsible
+// for persisting log messages and metadata to Loggly; 'LaaS'.
+//
+<span class="cstat-no" title="statement not covered">var Loggly = exports.Loggly = <span class="fstat-no" title="function not covered">function (options) {</span></span>
+<span class="cstat-no" title="statement not covered">  options = options || {};</span>
+&nbsp;
+  //
+  // Small amount of backwards compatibility with 0.x.x
+  //
+<span class="cstat-no" title="statement not covered">  if (options.inputToken &amp;&amp; !options.token) {</span>
+<span class="cstat-no" title="statement not covered">    options.token = options.inputToken;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  winston.Transport.call(this, options);</span>
+<span class="cstat-no" title="statement not covered">  if (!options.subdomain) {</span>
+<span class="cstat-no" title="statement not covered">    throw new Error('Loggly Subdomain is required');</span>
+  }
+  else <span class="cstat-no" title="statement not covered">if (!options || !options.token) {</span>
+<span class="cstat-no" title="statement not covered">    throw new Error('Loggly Customer token is required.');</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  this.name   = 'loggly';</span>
+<span class="cstat-no" title="statement not covered">  var tags = options.tags || options.tag || options.id;</span>
+<span class="cstat-no" title="statement not covered">  if (tags &amp;&amp; !Array.isArray(tags)) {</span>
+<span class="cstat-no" title="statement not covered">    tags = [tags];</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  this.client = loggly.createClient({</span>
+    subdomain: options.subdomain,
+    auth: options.auth || null,
+    json: options.json || false,
+    proxy: options.proxy || null,
+    token: options.token,
+    tags: tags,
+    isBulk: options.isBulk || false
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered">  this.timestamp = options.timestamp || false;</span>
+<span class="cstat-no" title="statement not covered">  this.stripColors = options.stripColors || false;</span>
+};
+&nbsp;
+//
+// Inherit from `winston.Transport`.
+//
+<span class="cstat-no" title="statement not covered">util.inherits(Loggly, winston.Transport);</span>
+&nbsp;
+//
+// Define a getter so that `winston.transports.Loggly`
+// is available and thus backwards compatible.
+//
+<span class="cstat-no" title="statement not covered">winston.transports.Loggly = Loggly;</span>
+&nbsp;
+//
+// Expose the name of this Transport on the prototype
+//
+<span class="cstat-no" title="statement not covered">Loggly.prototype.name = 'loggly';</span>
+&nbsp;
+//
+// ### function log (level, msg, [meta], callback)
+// #### @level {string} Level at which to log the message.
+// #### @msg {string} Message to log
+// #### @meta {Object} **Optional** Additional metadata to attach
+// #### @callback {function} Continuation to respond to when complete.
+// Core logging method exposed to Winston. Metadata is optional.
+//
+<span class="cstat-no" title="statement not covered">Loggly.prototype.log = <span class="fstat-no" title="function not covered">function (level, msg, meta, callback) {</span></span>
+<span class="cstat-no" title="statement not covered">  if (this.silent) {</span>
+<span class="cstat-no" title="statement not covered">    return callback(null, true);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if (this.timestamp &amp;&amp; (!meta || !meta.timestamp)) {</span>
+<span class="cstat-no" title="statement not covered">    meta = meta || {};</span>
+<span class="cstat-no" title="statement not covered">    meta.timestamp = (new Date()).toISOString();</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if (this.stripColors) {</span>
+<span class="cstat-no" title="statement not covered">    msg = ('' + msg).replace(code, '');</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  var message = winston.clone(meta || {}),</span>
+      self    = this;
+&nbsp;
+<span class="cstat-no" title="statement not covered">  message.level = level;</span>
+<span class="cstat-no" title="statement not covered">  message.message = msg;</span>
+&nbsp;
+  //
+  // Helper function for responded to logging.
+  //
+<span class="fstat-no" title="function not covered">  function logged() {</span>
+<span class="cstat-no" title="statement not covered">    self.emit('logged');</span>
+<span class="cstat-no" title="statement not covered">    callback(null, true);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  return meta.tags</span>
+    ? this.client.log(message, meta.tags, logged)
+    : this.client.log(message, logged);
+};
+&nbsp;
+//
+// ### function stream (options)
+// #### @options {Object} Set stream options
+// Returns a log stream.
+//
+<span class="cstat-no" title="statement not covered">Loggly.prototype.stream = <span class="fstat-no" title="function not covered">function(options) {</span></span>
+<span class="cstat-no" title="statement not covered">  var self = this,</span>
+      options = options || {},
+      stream = new Stream,
+      last,
+      start = options.start,
+      row = 0;
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if (start === -1) {</span>
+<span class="cstat-no" title="statement not covered">    start = null;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if (start == null) {</span>
+<span class="cstat-no" title="statement not covered">    last = new Date(0).toISOString();</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  stream.destroy = <span class="fstat-no" title="function not covered">function() {</span></span>
+<span class="cstat-no" title="statement not covered">    this.destroyed = true;</span>
+  };
+&nbsp;
+  // Unfortunately, we
+  // need to poll here.
+<span class="cstat-no" title="statement not covered">  (<span class="fstat-no" title="function not covered">function check() {</span></span>
+<span class="cstat-no" title="statement not covered">    self.query({</span>
+      from: last || 'NOW-1DAY',
+      until: 'NOW'
+    }, <span class="fstat-no" title="function not covered">function(err, results) {</span>
+<span class="cstat-no" title="statement not covered">      if (stream.destroyed) <span class="cstat-no" title="statement not covered">return;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">      if (err) {</span>
+<span class="cstat-no" title="statement not covered">        stream.emit('error', err);</span>
+<span class="cstat-no" title="statement not covered">        return setTimeout(check, 2000);</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered">      var result = res[res.length-1];</span>
+<span class="cstat-no" title="statement not covered">      if (result &amp;&amp; result.timestamp) {</span>
+<span class="cstat-no" title="statement not covered">        if (last == null) {</span>
+<span class="cstat-no" title="statement not covered">          last = result.timestamp;</span>
+<span class="cstat-no" title="statement not covered">          return;</span>
+        }
+<span class="cstat-no" title="statement not covered">        last = result.timestamp;</span>
+      } else {
+<span class="cstat-no" title="statement not covered">        return func();</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered">      results.forEach(<span class="fstat-no" title="function not covered">function(log) {</span></span>
+<span class="cstat-no" title="statement not covered">        if (start == null || row &gt; start) {</span>
+<span class="cstat-no" title="statement not covered">          stream.emit('log', log);</span>
+        }
+<span class="cstat-no" title="statement not covered">        row++;</span>
+      });
+&nbsp;
+<span class="cstat-no" title="statement not covered">      setTimeout(check, 2000);</span>
+    });
+  })();
+&nbsp;
+<span class="cstat-no" title="statement not covered">  return stream;</span>
+};
+&nbsp;
+//
+// ### function query (options)
+// #### @options {Object} Set stream options
+// #### @callback {function} Callback
+// Query the transport.
+//
+&nbsp;
+<span class="cstat-no" title="statement not covered">Loggly.prototype.query = <span class="fstat-no" title="function not covered">function (options, callback) {</span></span>
+<span class="cstat-no" title="statement not covered">  var self = this,</span>
+      context = this.extractContext(options);
+<span class="cstat-no" title="statement not covered">      options = this.loglify(options);</span>
+<span class="cstat-no" title="statement not covered">      options = this.extend(options, context);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  this.client</span>
+    .search(options)
+    .run(<span class="fstat-no" title="function not covered">function (err, logs) {</span>
+<span class="cstat-no" title="statement not covered">      return err</span>
+        ? callback(err)
+        : callback(null, self.sanitizeLogs(logs));
+    });
+};
+&nbsp;
+//
+// ### function formatQuery (query)
+// #### @query {string|Object} Query to format
+// Formats the specified `query` Object (or string) to conform
+// with the underlying implementation of this transport.
+//
+<span class="cstat-no" title="statement not covered">Loggly.prototype.formatQuery = <span class="fstat-no" title="function not covered">function (query) {</span></span>
+<span class="cstat-no" title="statement not covered">  return query;</span>
+};
+&nbsp;
+//
+// ### function formatResults (results, options)
+// #### @results {Object|Array} Results returned from `.query`.
+// #### @options {Object} **Optional** Formatting options
+// Formats the specified `results` with the given `options` accordinging
+// to the implementation of this transport.
+//
+<span class="cstat-no" title="statement not covered">Loggly.prototype.formatResults = <span class="fstat-no" title="function not covered">function (results, options) {</span></span>
+<span class="cstat-no" title="statement not covered">  return results;</span>
+};
+&nbsp;
+//
+// ### function extractContext (obj)
+// #### @obj {Object} Options has to extract Loggly 'context' properties from
+// Returns a separate object containing all Loggly 'context properties in
+// the object supplied and removes those properties from the original object.
+// [See Loggly Search API](http://wiki.loggly.com/retrieve_events#optional)
+//
+<span class="cstat-no" title="statement not covered">Loggly.prototype.extractContext = <span class="fstat-no" title="function not covered">function (obj) {</span></span>
+<span class="cstat-no" title="statement not covered">  var context = {};</span>
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered">   ['start',</span>
+   'from',
+   'until',
+   'order',
+   'callback',
+   'size',
+   'format',
+   'fields'].forEach(<span class="fstat-no" title="function not covered">function (key) {</span>
+<span class="cstat-no" title="statement not covered">    if (obj[key]) {</span>
+<span class="cstat-no" title="statement not covered">      context[key] = obj[key];</span>
+<span class="cstat-no" title="statement not covered">      delete obj[key];</span>
+    }
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered">  context = this.normalizeQuery(context);</span>
+<span class="cstat-no" title="statement not covered">  context.from = context.from.toISOString();</span>
+<span class="cstat-no" title="statement not covered">  context.until = context.until.toISOString();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  context.from  = context.from  || '-1d';</span>
+<span class="cstat-no" title="statement not covered">  context.until = context.until || 'now';</span>
+<span class="cstat-no" title="statement not covered">  context.size  = context.size  || 50;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  return context;</span>
+};
+&nbsp;
+&nbsp;
+//
+// ### function loglify (obj)
+// #### @obj {Object} Search query to convert into an `AND` loggly query.
+// Creates an `AND` joined loggly query for the specified object
+//
+// e.g. `{ foo: 1, bar: 2 }` =&gt; `json.foo:1 AND json.bar:2`
+//
+<span class="cstat-no" title="statement not covered">Loggly.prototype.loglify = <span class="fstat-no" title="function not covered">function (obj) {</span></span>
+<span class="cstat-no" title="statement not covered">  var opts = [];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  Object.keys(obj).forEach(<span class="fstat-no" title="function not covered">function (key) {</span></span>
+<span class="cstat-no" title="statement not covered">    if (key !== 'query' &amp;&amp;</span>
+        key !== 'fields' &amp;&amp;
+        key !== 'start' &amp;&amp;
+        key !== 'rows' &amp;&amp;
+        key !== 'limit' &amp;&amp;
+        key !== 'from' &amp;&amp;
+        key !== 'until')
+    {
+<span class="cstat-no" title="statement not covered">        if (key == 'tag') {</span>
+<span class="cstat-no" title="statement not covered">          opts.push(key + ':' + obj[key]);</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered">          opts.push('json.' + key + ':' + obj[key]);</span>
+       }
+    }
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if (obj.query) {</span>
+<span class="cstat-no" title="statement not covered">    opts.unshift(obj.query);</span>
+  }
+<span class="cstat-no" title="statement not covered">  return  {'query' : opts.join(' AND ')}</span>
+};
+&nbsp;
+//
+// ### function sanitizeLogs (logs)
+// #### @logs {Object} Data returned from Loggly to sanitize
+// Sanitizes the log information returned from Loggly so that
+// users cannot gain access to critical information such as:
+//
+// 1. IP Addresses
+// 2. Input names
+// 3. Input IDs
+//
+<span class="cstat-no" title="statement not covered">Loggly.prototype.sanitizeLogs = <span class="fstat-no" title="function not covered">function (logs) {</span></span>
+<span class="cstat-no" title="statement not covered">  return logs;</span>
+};
+&nbsp;
+<span class="cstat-no" title="statement not covered">Loggly.prototype.extend = <span class="fstat-no" title="function not covered">function(destination,source) {</span></span>
+<span class="cstat-no" title="statement not covered">    for (var property in source)</span>
+<span class="cstat-no" title="statement not covered">        destination[property] = source[property];</span>
+<span class="cstat-no" title="statement not covered">    return destination;</span>
+}
+&nbsp;
+&nbsp;</pre></td></tr>
+</tbody></table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Fri Apr 21 2017 09:02:18 GMT+0000 (UTC)</div>
+</div>
+
+
+</body></html>
